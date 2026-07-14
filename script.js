@@ -4,9 +4,9 @@
 
 // Target Birthday Unlock Date: 14 July 2:00 PM
 const TARGET_MONTH = 6; // July is 6 (0-indexed in JS Dates: Jan=0, Feb=1... Jul=6)
-const TARGET_DAY = 29;
-const TARGET_HOUR = 0;
-const TARGET_MINUTE = 0;
+const TARGET_DAY = 14;
+const TARGET_HOUR = 16;
+const TARGET_MINUTE = 25;
 const TARGET_SECOND = 0;
 
 // Passcode for the Secret Letter
@@ -16,28 +16,44 @@ const SECRET_PASSCODE = 'sonali';
 // Using absolute paths pointing to the high-quality assets we generated
 const GALLERY_PHOTOS = [
     {
-        url: 'file:///home/sagor/.gemini/antigravity/brain/390fb1df-a0bc-469b-bd06-3e5e7a0e0320/romantic_starry_walk_1784015106609.png',
-        caption: 'Walking under the starry heavens with you... ✨'
+        url: 'assets/images/IMG_20220214_171330.jpg',
+        caption: 'Valentine\'s Day memories that I cherish forever... 💖'
     },
     {
-        url: 'file:///home/sagor/.gemini/antigravity/brain/390fb1df-a0bc-469b-bd06-3e5e7a0e0320/romantic_candlelit_room_1784015140448.png',
-        caption: 'Warm, cozy nights spent sharing our dreams... ☕'
+        url: 'assets/images/IMG_20231030_160905.jpg',
+        caption: 'Hand in hand, writing our beautiful story... 🤝✨'
     },
     {
-        url: 'file:///home/sagor/.gemini/antigravity/brain/390fb1df-a0bc-469b-bd06-3e5e7a0e0320/sunset_beach_silhouette_1784015162131.png',
-        caption: 'Watching our future paint itself in the sky... 🌅'
+        url: 'assets/images/IMG-20260508-WA0051.jpg',
+        caption: 'Your lovely smile that lights up my entire world... 😊❤️'
     },
     {
-        url: 'file:///home/sagor/.gemini/antigravity/brain/390fb1df-a0bc-469b-bd06-3e5e7a0e0320/romantic_love_tree_1784015182609.png',
-        caption: 'Our love, growing stronger and branching higher... 🌸'
+        url: 'assets/images/IMG-20260611-WA0007.jpg',
+        caption: 'The sweet, quiet moments we share together... 🌸'
     },
     {
-        url: 'file:///home/sagor/.gemini/antigravity/brain/390fb1df-a0bc-469b-bd06-3e5e7a0e0320/romantic_love_letter_1784015199953.png',
-        caption: 'Every word written from the depth of my soul... ✉️'
+        url: 'assets/images/IMG-20260611-WA0009.jpg',
+        caption: 'Under the starry sky, my heart belongs to you... 🌌'
     },
     {
-        url: 'file:///home/sagor/.gemini/antigravity/brain/390fb1df-a0bc-469b-bd06-3e5e7a0e0320/cute_cats_starry_night_1784015220252.png',
-        caption: 'Snuggled close under the cosmic blanket... 🐱❤️'
+        url: 'assets/images/IMG-20260611-WA0012.jpg',
+        caption: 'Every laugh shared with you is a memory I keep... 💕'
+    },
+    {
+        url: 'assets/images/IMG-20260611-WA0025.jpg',
+        caption: 'Together is my favorite place to be... 🏡❤️'
+    },
+    {
+        url: 'assets/images/Messenger_creation_1B8745B1-75EF-4B20-9D19-CBFD3F98BA0B.jpeg',
+        caption: 'Cozy nights and endless conversations... ☕'
+    },
+    {
+        url: 'assets/images/Messenger_creation_1FF8252E-A7D0-4AA6-9484-6606E7E11751.jpeg',
+        caption: 'To the one who makes my heart skip a beat... 💓'
+    },
+    {
+        url: 'assets/images/received_435197221355993.jpeg',
+        caption: 'Our love, growing warmer with every single day... 🌹'
     }
 ];
 
@@ -1208,7 +1224,7 @@ window.addEventListener('DOMContentLoaded', () => {
     setupConfettiHearts();
     initThreeStarfield();
     checkBirthdayLock();
-    
+
     // Initialize AOS for static elements on page load (e.g. the countdown screen)
     AOS.init({
         duration: 1000,
