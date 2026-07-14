@@ -2,111 +2,238 @@
    ROMANTIC BIRTHDAY WEBSITE ENGINE (SONALI ❤️)
    ========================================================================== */
 
-// Target Birthday Unlock Date: 14 July 2:00 PM
+// Target Birthday Unlock Date: 29 July 12:00 AM
 const TARGET_MONTH = 6; // July is 6 (0-indexed in JS Dates: Jan=0, Feb=1... Jul=6)
-const TARGET_DAY = 14;
-const TARGET_HOUR = 16;
-const TARGET_MINUTE = 47;
+const TARGET_DAY = 29;
+const TARGET_HOUR = 0;
+const TARGET_MINUTE = 0;
 const TARGET_SECOND = 0;
 
 // Passcode for the Secret Letter
-const SECRET_PASSCODE = 'sonali';
+const SECRET_PASSCODE = 'shagor';
 
-// DEFAULT GALLERY IMAGES (Generated for Sonali)
-// Using absolute paths pointing to the high-quality assets we generated
-const GALLERY_PHOTOS = [
-    {
-        url: 'assets/images/IMG_20220214_171330.jpg',
-        caption: 'Valentine\'s Day memories that I cherish forever... 💖'
+// ==========================================================================
+// TRANSLATION DICTIONARY (English & Bengali)
+// ==========================================================================
+const TRANSLATIONS = {
+    en: {
+        countdownTitle: "A Special Surprise Is Waiting For You ❤️",
+        countdownSubtitle: "Every second brings us closer to your special day.",
+        labelDays: "Days",
+        labelHours: "Hours",
+        labelMinutes: "Minutes",
+        labelSeconds: "Seconds",
+        birthdayDateTag: '<i class="fa-regular fa-calendar-heart"></i> Birthday Date: <span>29 July, 12:00 AM</span>',
+        countdownFooter: "Come back on 29 July at 12:00 AM to unlock your surprise.",
+        tapInstruction: "Click the gift to open your surprise... ✨",
+        typewriterTitle: "🎉 Happy Birthday My Princess ❤️",
+        typewriterSubtitle: "To My Beautiful Sonali",
+        trackName: "Romantic Birthday Theme",
+        artistName: "For Sonali ❤️",
+
+        // Site Content
+        heroGreeting: "Happy Birthday",
+        heroName: "Sonali ❤️",
+        heroTagline: "To the girl who holds the key to my heart, the reason for my smiles, and my forever princess. Today, we celebrate your magical existence.",
+        scrollIndicator: "Scroll to begin our story",
+
+        loveLetterTitle: "My <span>Love Letter</span>",
+        loveLetterPaper: `<h3>My Dearest Sonali,</h3>
+                        <p>From the moment you stepped into my life, you colored my world with hues of joy I never knew existed. Your presence is a warm embrace, your smile is my ultimate inspiration, and your kindness is a gentle light that guides me.</p>
+                        <p>On this incredibly special day, your birthday, I want to thank you for simply being you. You make every ordinary moment feel extraordinary, and you deserve a lifetime of smiles, peace, and beautiful dreams.</p>
+                        <p>I promise to cherish you, stand by you, and write endless pages of our love story together. May this year be as spectacular, radiant, and lovely as you are.</p>
+                        <p class="signature">Forever Yours,<br>Shagor ❤️</p>`,
+
+        galleryTitle: "Moments of <span>Beauty</span>",
+        galleryPhotos: [
+            { url: 'assets/images/IMG_20220214_171330.jpg', caption: "Valentine's Day memories that I cherish forever... 💖" },
+            { url: 'assets/images/IMG_20231030_160905.jpg', caption: 'Hand in hand, writing our beautiful story... 🤝✨' },
+            { url: 'assets/images/IMG-20260508-WA0051.jpg', caption: 'Your lovely smile that lights up my entire world... 😊❤️' },
+            { url: 'assets/images/IMG-20260611-WA0007.jpg', caption: 'The sweet, quiet moments we share together... 🌸' },
+            { url: 'assets/images/IMG-20260611-WA0009.jpg', caption: 'Under the starry sky, my heart belongs to you... 🌌' },
+            { url: 'assets/images/IMG-20260611-WA0012.jpg', caption: 'Every laugh shared with you is a memory I keep... 💕' },
+            { url: 'assets/images/IMG-20260611-WA0025.jpg', caption: 'Together is my favorite place to be... 🏡❤️' },
+            { url: 'assets/images/Messenger_creation_1B8745B1-75EF-4B20-9D19-CBFD3F98BA0B.jpeg', caption: 'Cozy nights and endless conversations... ☕' },
+            { url: 'assets/images/Messenger_creation_1FF8252E-A7D0-4AA6-9484-6606E7E11751.jpeg', caption: 'To the one who makes my heart skip a beat... 💓' },
+            { url: 'assets/images/received_435197221355993.jpeg', caption: 'Our love, growing warmer with every single day... 🌹' }
+        ],
+
+        timelineTitle: "Our Love <span>Timeline</span>",
+        memories: [
+            { date: 'First Connection', title: 'The Spark That Changed Everything', desc: 'A simple conversation that sparked an electric connection, starting our journey together.' },
+            { date: 'Our First Date', title: 'Butterflies & Endless Laughter', desc: 'Staring into your beautiful eyes, time stood completely still, and I knew you were the one.' },
+            { date: 'Unforgettable Journeys', title: 'Hand in Hand, Side by Side', desc: 'Exploring new paths, sharing secrets, and building a vault of memories that only we hold.' },
+            { date: 'The Present & Beyond', title: 'Forever Growing Together', desc: 'Celebrating your birthday today, and looking forward to an eternity of loving you.' }
+        ],
+
+        reasonsTitle: "Reasons I <span>Love You</span>",
+        reasons: [
+            { icon: 'fa-heart-pulse', title: 'Your Kind Heart', desc: 'The gentle, selfless way you care for everyone around you, bringing light into their lives.' },
+            { icon: 'fa-wand-magic-sparkles', title: 'Your Magic Smile', desc: 'One smile from you instantly dispels my worries and brightens up my entire universe.' },
+            { icon: 'fa-handshake-angle', title: 'Your Endless Support', desc: 'How you believe in me even when I doubt myself, standing as my pillar of strength.' },
+            { icon: 'fa-music', title: 'Your Laughter', desc: 'The sweetest, most musical sound that brings pure happiness to my soul.' },
+            { icon: 'fa-shield-halved', title: 'Your Strength', desc: 'The elegant courage and grace with which you handle life\'s challenges, inspiring me daily.' },
+            { icon: 'fa-infinity', title: 'Just Being You', desc: 'You are my best friend, my soulmate, and my greatest adventure. I love you exactly as you are.' }
+        ],
+
+        quotes: [
+            { text: '“In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.”', author: 'Maya Angelou' },
+            { text: '“If I had a flower for every time I thought of you... I could walk through my garden forever.”', author: 'Alfred Tennyson' },
+            { text: '“I look at you and see the rest of my life in your eyes.”', author: 'Unknown' },
+            { text: '“You are my today and all of my tomorrows.”', author: 'Leo Christopher' }
+        ],
+
+        wishJarTitle: "Interactive <span>Wish Jar</span>",
+        jarHint: "Tap the glowing wishes inside the jar to reveal warm messages...",
+        jarWishes: [
+            'May your eyes always shine with happiness and your beautiful smile never fade. Happy Birthday, Sonali! 🌸',
+            'I wish for us to share a lifetime of stargazing, cozy coffees, and endless warmth. ❤️',
+            'May this year bring you all the success, peacefulness, and joy your sweet heart deserves! 🌟',
+            'I wish to be by your side for every single birthday, reminding you of how deeply you are loved. 💍',
+            'May all your dreams paint themselves into reality this year, my beautiful princess! 👑'
+        ],
+        wishJarClickedHint: "Tap on the glowing wishes inside the jar to reveal hidden wishes!",
+        wishDisplayTitle: "A Wish For You",
+
+        heartAnimTitle: "Send <span>Hearts</span>",
+        heartCountPrefix: "You've sent ",
+        heartCountSuffix: " hearts to Sonali!",
+        heartSubtext: "Tap the heart to explode sparkles of love.",
+
+        secretLetterTitle: "Top Secret Surprise Letter",
+        secretLetterDesc: "Enter the secret passcode (boyfriend's name in lowercase) to unlock a personal surprise message.",
+        secretLetterPlaceholder: "Enter password...",
+        secretLetterBtn: "Unlock",
+        secretLetterRevealedTitle: "A Secret Just For You...",
+        secretLetterRevealedBody: `Sonali,
+        
+        You are my absolute favorite person in the entire universe. Every day with you is a blessing, and I couldn't be more thankful to walk this life with you.
+        
+        This website is a small token of my love, designed to show you that no matter the time, date, or distance, my heart will always count down the seconds to make you happy.
+        
+        Thank you for loving me. Thank you for your warmth.
+        
+        Happy Birthday, My Princess. I love you to the moon and back, forever and ever.
+        
+        Forever Yours,
+        Shagor ❤️`,
+
+        endingTitle: "Forever Yours ❤️",
+        endingText: "No matter how many years go by, or how much the stars rotate in the sky, my love for you remains unchanging.",
+        endingReplayBtn: "Replay Magical Opening",
+        endingFooter: "Designed with endless love for Sonali ❤️ | 29 July"
     },
-    {
-        url: 'assets/images/IMG_20231030_160905.jpg',
-        caption: 'Hand in hand, writing our beautiful story... 🤝✨'
-    },
-    {
-        url: 'assets/images/IMG-20260508-WA0051.jpg',
-        caption: 'Your lovely smile that lights up my entire world... 😊❤️'
-    },
-    {
-        url: 'assets/images/IMG-20260611-WA0007.jpg',
-        caption: 'The sweet, quiet moments we share together... 🌸'
-    },
-    {
-        url: 'assets/images/IMG-20260611-WA0009.jpg',
-        caption: 'Under the starry sky, my heart belongs to you... 🌌'
-    },
-    {
-        url: 'assets/images/IMG-20260611-WA0012.jpg',
-        caption: 'Every laugh shared with you is a memory I keep... 💕'
-    },
-    {
-        url: 'assets/images/IMG-20260611-WA0025.jpg',
-        caption: 'Together is my favorite place to be... 🏡❤️'
-    },
-    {
-        url: 'assets/images/Messenger_creation_1B8745B1-75EF-4B20-9D19-CBFD3F98BA0B.jpeg',
-        caption: 'Cozy nights and endless conversations... ☕'
-    },
-    {
-        url: 'assets/images/Messenger_creation_1FF8252E-A7D0-4AA6-9484-6606E7E11751.jpeg',
-        caption: 'To the one who makes my heart skip a beat... 💓'
-    },
-    {
-        url: 'assets/images/received_435197221355993.jpeg',
-        caption: 'Our love, growing warmer with every single day... 🌹'
+    bn: {
+        countdownTitle: "তোমার জন্য একটি বিশেষ চমক অপেক্ষা করছে ❤️",
+        countdownSubtitle: "প্রতিটি মুহূর্ত আমাদের তোমার বিশেষ দিনের আরও কাছে নিয়ে আসছে।",
+        labelDays: "দিন",
+        labelHours: "ঘণ্টা",
+        labelMinutes: "মিনিট",
+        labelSeconds: "সেকেন্ড",
+        birthdayDateTag: '<i class="fa-regular fa-calendar-heart"></i> জন্মদিন: <span>২৯ জুলাই, রাত ১২:০০ মিনিট</span>',
+        countdownFooter: "তোমার সারপ্রাইজটি আনলক করতে ২৯ জুলাই রাত ১২:০০ মিনিটে ফিরে আসো।",
+        tapInstruction: "সারপ্রাইজটি দেখতে উপহারের বাক্সে ক্লিক করো... ✨",
+        typewriterTitle: "🎉 শুভ জন্মদিন আমার রাজকুমারী ❤️",
+        typewriterSubtitle: "আমার মিষ্টি সোনালীর জন্য",
+        trackName: "রোমান্টিক বার্থডে থিম",
+        artistName: "সোনালীর জন্য ❤️",
+
+        // Site Content
+        heroGreeting: "শুভ জন্মদিন",
+        heroName: "সোনালী ❤️",
+        heroTagline: "যে আমার হৃদয়ের চাবিকাঠি ধরে রেখেছে, আমার হাসির কারণ, এবং আমার চিরকালের রাজকুমারী। আজ আমরা তোমার জাদুকরী অস্তিত্ব উদযাপন করছি।",
+        scrollIndicator: "আমাদের গল্প দেখতে স্ক্রল করো",
+
+        loveLetterTitle: "আমার <span>প্রেমপত্র</span>",
+        loveLetterPaper: `<h3>আমার প্রিয় সোনালী,</h3>
+                        <p>যেদিন তুমি আমার জীবনে এসেছিলে, সেদিন আমার পৃথিবীকে আনন্দের এমন রঙে রাঙিয়ে দিয়েছিলে যা আমি আগে কখনো জানতাম না। তোমার উপস্থিতি একটি উষ্ণ আলিঙ্গন, তোমার হাসি আমার শেষ অনুপ্রেরণা, এবং তোমার দয়া একটি মৃদু আলো যা আমাকে পথ দেখায়।</p>
+                        <p>এই অবিশ্বাস্য বিশেষ দিনে, তোমার জন্মদিনে, আমি তোমাকে ধন্যবাদ জানাতে চাই শুধু তুমি হওয়ার জন্য। তুমি প্রতিটা সাধারণ মুহূর্তকে অসাধারণ করে তোলো, এবং তুমি আজীবন হাসি, শান্তি আর সুন্দর স্বপ্নের যোগ্য।</p>
+                        <p>আমি তোমাকে লালন করার, তোমার পাশে থাকার এবং আমাদের ভালোবাসার গল্পের অন্তহীন পাতা লেখার প্রতিশ্রুতি দিচ্ছি। এই বছরটি যেন তোমার মতোই চমৎকার, উজ্জ্বল এবং সুন্দর হোক।</p>
+                        <p class="signature">চিরকাল তোমারই,<br>সাগর ❤️</p>`,
+
+        galleryTitle: "সৌন্দর্যের <span>মুহূর্তগুলো</span>",
+        galleryPhotos: [
+            { url: 'assets/images/IMG_20220214_171330.jpg', caption: 'ভ্যালেন্টাইনস ডে-র স্মৃতি যা আমি চিরকাল আগলে রাখবো... 💖' },
+            { url: 'assets/images/IMG_20231030_160905.jpg', caption: 'হাতে হাত রেখে, আমাদের সুন্দর গল্প লেখা... 🤝✨' },
+            { url: 'assets/images/IMG-20260508-WA0051.jpg', caption: 'তোমার মিষ্টি হাসি যা আমার পুরো পৃথিবীকে আলোকিত করে... 😊❤️' },
+            { url: 'assets/images/IMG-20260611-WA0007.jpg', caption: 'আমাদের কাটানো মিষ্টি ও শান্ত মুহূর্তগুলো... 🌸' },
+            { url: 'assets/images/IMG-20260611-WA0009.jpg', caption: 'তারাময় আকাশের নিচে, আমার হৃদয় শুধুই তোমার... 🌌' },
+            { url: 'assets/images/IMG-20260611-WA0012.jpg', caption: 'তোমার সাথে ভাগ করে নেওয়া প্রতিটি হাসি আমার অমূল্য স্মৃতি... 💕' },
+            { url: 'assets/images/IMG-20260611-WA0025.jpg', caption: 'তোমার পাশে থাকাই আমার সবচেয়ে প্রিয় জায়গা... 🏡❤️' },
+            { url: 'assets/images/Messenger_creation_1B8745B1-75EF-4B20-9D19-CBFD3F98BA0B.jpeg', caption: 'উষ্ণ রাত আর আমাদের অন্তহীন গল্পগুজব... ☕' },
+            { url: 'assets/images/Messenger_creation_1FF8252E-A7D0-4AA6-9484-6606E7E11751.jpeg', caption: 'যে আমার হৃদস্পন্দন বাড়িয়ে দেয় তার জন্য... 💓' },
+            { url: 'assets/images/received_435197221355993.jpeg', caption: 'আমাদের ভালোবাসা, প্রতিদিন আরও বেশি গভীর হচ্ছে... 🌹' }
+        ],
+
+        timelineTitle: "আমাদের ভালোবাসার <span>টাইমলাইন</span>",
+        memories: [
+            { date: 'প্রথম পরিচয়', title: 'যে স্পার্ক সবকিছু বদলে দিয়েছিল', desc: 'একটি সাধারণ কথোপকথন যা আমাদের মধ্যে একটি তীব্র আকর্ষণ তৈরি করেছিল, আমাদের একসাথে পথ চলা শুরু হয়েছিল।' },
+            { date: 'আমাদের প্রথম ডেট', title: 'হৃদস্পন্দন আর অন্তহীন হাসি', desc: 'তোমার সুন্দর চোখের দিকে তাকিয়ে সময় সম্পূর্ণ থমকে গিয়েছিল, এবং আমি জানতাম তুমিই সেই বিশেষ মানুষ।' },
+            { date: 'অবিশ্বাস্য ভ্রমণ', title: 'হাতে হাত রেখে, পাশাপাশি', desc: 'নতুন পথ অন্বেষণ করা, গোপন কথা ভাগ করে নেওয়া, এবং স্মৃতির একটি ভাণ্ডার গড়ে তোলা যা কেবল আমাদের।' },
+            { date: 'বর্তমান ও ভবিষ্যৎ', title: 'চিরকাল একসাথে বেড়ে ওঠা', desc: 'আজ তোমার জন্মদিন উদযাপন করছি, এবং তোমাকে চিরকাল ভালোবাসার জন্য অধীর আগ্রহে অপেক্ষা করছি।' }
+        ],
+
+        reasonsTitle: "তোমাকে ভালোবাসার <span>কারণগুলো</span>",
+        reasons: [
+            { icon: 'fa-heart-pulse', title: 'তোমার সদয় হৃদয়', desc: 'তোমার চারপাশের সবার যত্ন নেওয়ার সেই কোমল, নিঃস্বার্থ উপায়, যা তাদের জীবনে আলো নিয়ে আসে।' },
+            { icon: 'fa-wand-magic-sparkles', title: 'তোমার জাদুকরী হাসি', desc: 'তোমার একটা হাসি নিমেষেই আমার সব দুশ্চিন্তা দূর করে দেয় এবং আমার পুরো মহাবিশ্বকে উজ্জ্বল করে তোলে।' },
+            { icon: 'fa-handshake-angle', title: 'তোমার অন্তহীন সমর্থন', desc: 'আমি যখন নিজের ওপর সন্দেহ করি তখন তুমি যেভাবে আমার ওপর বিশ্বাস রাখো, আমার শক্তির স্তম্ভ হয়ে দাঁড়াও।' },
+            { icon: 'fa-music', title: 'তোমার হাসি', desc: 'সবচেয়ে মিষ্টি, সবচেয়ে সুরেলা শব্দ যা আমার আত্মায় বিশুদ্ধ সুখ নিয়ে আসে।' },
+            { icon: 'fa-shield-halved', title: 'তোমার শক্তি', desc: 'যে মার্জিত সাহসিকতা এবং অনুগ্রহের সাথে তুমি জীবনের চ্যালেঞ্জগুলো মোকাবেলা করো, তা আমাকে প্রতিদিন অনুপ্রাণিত করে।' },
+            { icon: 'fa-infinity', title: 'শুধু তুমি হওয়ার জন্য', desc: 'তুমি আমার সেরা বন্ধু, আমার জীবনসঙ্গী এবং আমার সবচেয়ে বড় অ্যাডভেঞ্চার। তুমি যেমন আছ, আমি ঠিক তেমনই তোমাকে ভালোবাসি।' }
+        ],
+
+        quotes: [
+            { text: '“সারা বিশ্বে আমার জন্য তোমার মতো কোনো হৃদয় নেই। সারা বিশ্বে তোমার জন্য আমার মতো কোনো ভালোবাসা নেই।”', author: 'মায়া অ্যাঞ্জেলো' },
+            { text: '“আমি যতবার তোমার কথা ভাবি ততবার যদি একটি করে ফুল পেতাম... তবে আমি চিরকাল আমার বাগানে হাঁটতে পারতাম।”', author: 'আলফ্রেড টেনিসন' },
+            { text: '“আমি তোমার দিকে তাকাই এবং তোমার চোখের মধ্যে আমার বাকি জীবন দেখতে পাই।”', author: 'অজানা' },
+            { text: '“তুমি আমার আজকের দিন এবং আমার সব আগামী দিন।”', author: 'লিও ক্রিস্টোফার' }
+        ],
+
+        wishJarTitle: "ইন্টারেক্টিভ <span>ইচ্ছার জার</span>",
+        jarHint: "জারের ভিতরের জ্বলজ্বলে ইচ্ছাগুলোতে ট্যাপ করে ভালোবাসার বার্তাগুলো উন্মোচন করো...",
+        jarWishes: [
+            'তোমার চোখ যেন সবসময় সুখে উজ্জ্বল থাকে এবং তোমার সুন্দর হাসি যেন কখনো মলিন না হয়। শুভ জন্মদিন, সোনালী! 🌸',
+            'আমি কামনা করি আমরা আজীবন একসাথে তারা গোনা, কফি খাওয়া এবং অন্তহীন উষ্ণতা ভাগ করে নিই। ❤️',
+            'এই বছরটি তোমার মিষ্টি হৃদয়ের যোগ্য সব সাফল্য, শান্তি এবং আনন্দ বয়ে আনুক! 🌟',
+            'আমি তোমার প্রতিটা জন্মদিনে তোমার পাশে থাকতে চাই, তোমাকে মনে করিয়ে দিতে চাই যে তোমাকে কতটা গভীরভাবে ভালোবাসা হয়। 💍',
+            'এই বছর তোমার সব স্বপ্ন যেন বাস্তবে রূপ নেয়, আমার সুন্দর রাজকুমারী! 👑'
+        ],
+        wishJarClickedHint: "লুকানো ইচ্ছাগুলো দেখতে জারের ভিতরে জ্বলজ্বলে সোনালী বিন্দুগুলোতে ট্যাপ করো!",
+        wishDisplayTitle: "তোমার জন্য একটি ইচ্ছা",
+
+        heartAnimTitle: "ভালোবাসা <span>পাঠাও</span>",
+        heartCountPrefix: "তুমি সোনালীকে ",
+        heartCountSuffix: " টি হৃদয় পাঠিয়েছ!",
+        heartSubtext: "ভালোবাসার কণা ছড়াতে হৃদয়ে ট্যাপ করো।",
+
+        secretLetterTitle: "অত্যন্ত গোপন সারপ্রাইজ চিঠি",
+        secretLetterDesc: "গোপন বার্তাটি আনলক করতে পাসকোডটি প্রবেশ করাও (ছোট হাতের অক্ষরে তোমার প্রেমিকের নাম)।",
+        secretLetterPlaceholder: "পাসওয়ার্ড দাও...",
+        secretLetterBtn: "আনলক করো",
+        secretLetterRevealedTitle: "শুধু তোমার জন্য একটি গোপন কথা...",
+        secretLetterRevealedBody: `সোনালী,
+        
+        তুমি এই পুরো মহাবিশ্বে আমার সবচেয়ে প্রিয় মানুষ। তোমার সাথে কাটানো প্রতিটি দিন একটি আশীর্বাদ, এবং এই জীবনপথে তোমার সাথে হাঁটতে পারার জন্য আমি কৃতজ্ঞতার শেষ নেই।
+        
+        এই ওয়েবসাইটটি আমার ভালোবাসার একটি ছোট উপহার, যা তোমাকে দেখানোর জন্য ডিজাইন করা হয়েছে যে সময়, তারিখ বা দূরত্ব যাই হোক না কেন, আমার হৃদয় সবসময় তোমাকে সুখী করার সেকেন্ডগুলো গণনা করবে।
+        
+        আমাকে ভালোবাসার জন্য ধন্যবাদ। তোমার উষ্ণতার জন্য ধন্যবাদ।
+        
+        শুভ জন্মদিন, আমার রাজকুমারী। আমি তোমাকে চাঁদের সমান এবং তার চেয়েও বেশি ভালোবাসি, চিরকাল এবং সর্বদা।
+        
+        তোমারই,
+        সাগর ❤️`,
+
+        endingTitle: "চিরকাল তোমারই ❤️",
+        endingText: "যত বছরই কেটে যাক না কেন, বা আকাশে নক্ষত্ররা যেভাবে ঘুরুক না কেন, তোমার প্রতি আমার ভালোবাসা অপরিবর্তিত থাকবে।",
+        endingReplayBtn: "জাদুকরী ওপেনিং পুনরায় দেখো",
+        endingFooter: "সোনালীর জন্য অন্তহীন ভালোবাসা দিয়ে তৈরি ❤️ | ২৯ জুলাই"
     }
-];
+};
 
-// Memory Timeline Data
-const MEMORIES = [
-    {
-        date: 'First Connection',
-        title: 'The Spark That Changed Everything',
-        desc: 'A simple conversation that sparked an electric connection, starting our journey together.'
-    },
-    {
-        date: 'Our First Date',
-        title: 'Butterflies & Endless Laughter',
-        desc: 'Staring into your beautiful eyes, time stood completely still, and I knew you were the one.'
-    },
-    {
-        date: 'Unforgettable Journeys',
-        title: 'Hand in Hand, Side by Side',
-        desc: 'Exploring new paths, sharing secrets, and building a vault of memories that only we hold.'
-    },
-    {
-        date: 'The Present & Beyond',
-        title: 'Forever Growing Together',
-        desc: 'Celebrating your birthday today, and looking forward to an eternity of loving you.'
-    }
-];
-
-// Reasons I Love You Data
-const REASONS = [
-    { icon: 'fa-heart-pulse', title: 'Your Kind Heart', desc: 'The gentle, selfless way you care for everyone around you, bringing light into their lives.' },
-    { icon: 'fa-wand-magic-sparkles', title: 'Your Magic Smile', desc: 'One smile from you instantly dispels my worries and brightens up my entire universe.' },
-    { icon: 'fa-handshake-angle', title: 'Your Endless Support', desc: 'How you believe in me even when I doubt myself, standing as my pillar of strength.' },
-    { icon: 'fa-music', title: 'Your Laughter', desc: 'The sweetest, most musical sound that brings pure happiness to my soul.' },
-    { icon: 'fa-shield-halved', title: 'Your Strength', desc: 'The elegant courage and grace with which you handle life\'s challenges, inspiring me daily.' },
-    { icon: 'fa-infinity', title: 'Just Being You', desc: 'You are my best friend, my soulmate, and my greatest adventure. I love you exactly as you are.' }
-];
-
-// Romantic Quotes
-const QUOTES = [
-    { text: '“In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine.”', author: 'Maya Angelou' },
-    { text: '“If I had a flower for every time I thought of you... I could walk through my garden forever.”', author: 'Alfred Tennyson' },
-    { text: '“I look at you and see the rest of my life in your eyes.”', author: 'Unknown' },
-    { text: '“You are my today and all of my tomorrows.”', author: 'Leo Christopher' }
-];
-
-// Sweet Jar Messages
-const JAR_WISHES = [
-    'May your eyes always shine with happiness and your beautiful smile never fade. Happy Birthday, Sonali! 🌸',
-    'I wish for us to share a lifetime of stargazing, cozy coffees, and endless warmth. ❤️',
-    'May this year bring you all the success, peacefulness, and joy your sweet heart deserves! 🌟',
-    'I wish to be by your side for every single birthday, reminding you of how deeply you are loved. 💍',
-    'May all your dreams paint themselves into reality this year, my beautiful princess! 👑'
-];
+// Language State
+let currentLang = localStorage.getItem('birthdayLang') || 'en';
 
 // Audio State
 let audioContext = null;
@@ -221,7 +348,7 @@ function playUnlockSound() {
 function startBgmMusic() {
     musicUnlocked = true;
     const bgm = document.getElementById('audio-bgm');
-    bgm.loop = false; // Instruction says: Play birthday music automatically (loop disabled)
+    bgm.loop = false;
     bgm.volume = 0.5;
 
     const playPromise = bgm.play();
@@ -262,16 +389,17 @@ function toggleBgmPlayState() {
 }
 
 // ==========================================================================
-// DYNAMIC WEB SITE GENERATION (Ensures code is not in source DOM beforehand)
+// DYNAMIC WEB SITE GENERATION (Multilingual Support)
 // ==========================================================================
 function getBirthdayHtml() {
+    const t = TRANSLATIONS[currentLang];
+
     // Generate Polaroid Gallery Cards
     let galleryHtml = '';
-    GALLERY_PHOTOS.forEach((photo, idx) => {
-        // Alternating polaroid tilts for premium look
+    t.galleryPhotos.forEach((photo, idx) => {
         const rotation = (idx % 3 === 0) ? '-3deg' : (idx % 3 === 1) ? '3deg' : '-1.5deg';
         galleryHtml += `
-            <div class="polaroid" style="--rotation: ${rotation}" onclick="openLightbox('${photo.url}', '${photo.caption}')" data-aos="zoom-in" data-aos-delay="${idx * 150}">
+            <div class="polaroid" style="--rotation: ${rotation}" onclick="openLightbox('${photo.url}', \`${photo.caption.replace(/'/g, "\\'")}\`)" data-aos="zoom-in" data-aos-delay="${idx * 150}">
                 <img src="${photo.url}" alt="Sonali Memory">
                 <div class="polaroid-caption">${photo.caption}</div>
             </div>
@@ -280,7 +408,7 @@ function getBirthdayHtml() {
 
     // Generate Timeline Items
     let timelineHtml = '';
-    MEMORIES.forEach((m, idx) => {
+    t.memories.forEach((m, idx) => {
         const dir = (idx % 2 === 0) ? 'timeline-left' : 'timeline-right';
         const aosType = (idx % 2 === 0) ? 'fade-right' : 'fade-left';
         timelineHtml += `
@@ -296,7 +424,7 @@ function getBirthdayHtml() {
 
     // Generate Reasons Cards
     let reasonsHtml = '';
-    REASONS.forEach((r, idx) => {
+    t.reasons.forEach((r, idx) => {
         reasonsHtml += `
             <div class="flip-card" data-aos="flip-up" data-aos-delay="${idx * 100}">
                 <div class="flip-card-inner">
@@ -314,7 +442,7 @@ function getBirthdayHtml() {
 
     // Generate Quote slides
     let quotesHtml = '';
-    QUOTES.forEach((q, idx) => {
+    t.quotes.forEach((q, idx) => {
         const active = (idx === 0) ? 'active' : '';
         quotesHtml += `
             <div class="quote-slide ${active}" id="quote-slide-${idx}">
@@ -326,7 +454,7 @@ function getBirthdayHtml() {
     });
 
     let dotsHtml = '';
-    QUOTES.forEach((_, idx) => {
+    t.quotes.forEach((_, idx) => {
         const active = (idx === 0) ? 'active' : '';
         dotsHtml += `<span class="dot ${active}" onclick="setQuoteSlide(${idx})"></span>`;
     });
@@ -334,20 +462,18 @@ function getBirthdayHtml() {
     return `
         <!-- 1. HERO SECTION -->
         <section id="hero" class="hero-wrapper">
-            <div class="hero-greeting" data-aos="fade-down" data-aos-duration="1500">Happy Birthday</div>
-            <div class="hero-name" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">Sonali ❤️</div>
-            <p class="hero-tagline" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">
-                To the girl who holds the key to my heart, the reason for my smiles, and my forever princess. Today, we celebrate your magical existence.
-            </p>
+            <div class="hero-greeting" data-aos="fade-down" data-aos-duration="1500">${t.heroGreeting}</div>
+            <div class="hero-name" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="300">${t.heroName}</div>
+            <p class="hero-tagline" data-aos="fade-up" data-aos-duration="1500" data-aos-delay="600">${t.heroTagline}</p>
             <div class="scroll-indicator" onclick="scrollToSection('love-letter')">
-                <span>Scroll to begin our story</span>
+                <span>${t.scrollIndicator}</span>
                 <i class="fa-solid fa-chevron-down"></i>
             </div>
         </section>
 
         <!-- 2. LOVE LETTER SECTION -->
         <section id="love-letter" class="birthday-section">
-            <h2 class="section-title">My <span>Love Letter</span></h2>
+            <h2 class="section-title">${t.loveLetterTitle}</h2>
             <div class="envelope-container" data-aos="zoom-in" data-aos-duration="1200">
                 <div class="envelope-wrapper" id="envelope-letter" onclick="toggleEnvelope()">
                     <div class="envelope-flap"></div>
@@ -356,11 +482,7 @@ function getBirthdayHtml() {
                         <i class="fa-solid fa-heart"></i>
                     </div>
                     <div class="letter-paper">
-                        <h3>My Dearest Sonali,</h3>
-                        <p>From the moment you stepped into my life, you colored my world with hues of joy I never knew existed. Your presence is a warm embrace, your smile is my ultimate inspiration, and your kindness is a gentle light that guides me.</p>
-                        <p>On this incredibly special day, your birthday, I want to thank you for simply being you. You make every ordinary moment feel extraordinary, and you deserve a lifetime of smiles, peace, and beautiful dreams.</p>
-                        <p>I promise to cherish you, stand by you, and write endless pages of our love story together. May this year be as spectacular, radiant, and lovely as you are.</p>
-                        <p class="signature">Forever Yours,<br>Shagor ❤️</p>
+                        ${t.loveLetterPaper}
                     </div>
                 </div>
             </div>
@@ -368,7 +490,7 @@ function getBirthdayHtml() {
 
         <!-- 3. PHOTO GALLERY -->
         <section id="photo-gallery" class="birthday-section">
-            <h2 class="section-title">Moments of <span>Beauty</span></h2>
+            <h2 class="section-title">${t.galleryTitle}</h2>
             <div class="gallery-grid">
                 ${galleryHtml}
             </div>
@@ -376,7 +498,7 @@ function getBirthdayHtml() {
 
         <!-- 4. TIMELINE OF MEMORIES -->
         <section id="timeline" class="birthday-section">
-            <h2 class="section-title">Our Love <span>Timeline</span></h2>
+            <h2 class="section-title">${t.timelineTitle}</h2>
             <div class="timeline-container">
                 ${timelineHtml}
             </div>
@@ -384,7 +506,7 @@ function getBirthdayHtml() {
 
         <!-- 5. REASONS I LOVE YOU -->
         <section id="reasons" class="birthday-section">
-            <h2 class="section-title">Reasons I <span>Love You</span></h2>
+            <h2 class="section-title">${t.reasonsTitle}</h2>
             <div class="reasons-container">
                 ${reasonsHtml}
             </div>
@@ -402,18 +524,14 @@ function getBirthdayHtml() {
 
         <!-- 7. WISH JAR -->
         <section id="wish-jar" class="birthday-section">
-            <h2 class="section-title">Interactive <span>Wish Jar</span></h2>
-            <p class="jar-hint" data-aos="fade-up">Tap the glowing wishes inside the jar to reveal warm messages...</p>
+            <h2 class="section-title">${t.wishJarTitle}</h2>
+            <p class="jar-hint" data-aos="fade-up">${t.jarHint}</p>
             <div class="wish-jar-wrapper" data-aos="zoom-in">
                 <div class="jar-svg-container" onclick="jarClicked(event)">
-                    <!-- Jar Visualized via SVG Path -->
                     <svg class="jar-svg" viewBox="0 0 100 150">
-                        <!-- Jar Body -->
                         <path d="M 30,10 L 70,10 L 70,22 C 70,22 88,25 88,50 L 88,125 C 88,142 75,145 50,145 C 25,145 12,142 12,125 L 12,50 C 12,25 30,22 30,22 Z" />
-                        <!-- Jar Lid -->
                         <path d="M 28,5 L 72,5 L 72,10 L 28,10 Z" style="fill: var(--accent-gold); stroke: var(--accent-gold); stroke-width: 1;" />
                     </svg>
-                    <!-- Floating Bubbles (Wishes) inside -->
                     <div class="floating-note" style="top: 15%; left: 35%; animation-delay: 0.1s;" onclick="revealWish(0, event)"></div>
                     <div class="floating-note" style="top: 30%; left: 55%; animation-delay: 2.2s;" onclick="revealWish(1, event)"></div>
                     <div class="floating-note" style="top: 45%; left: 25%; animation-delay: 1.5s;" onclick="revealWish(2, event)"></div>
@@ -422,7 +540,7 @@ function getBirthdayHtml() {
                 </div>
                 
                 <div class="wish-reveal-card glassmorphic hidden" id="wish-display">
-                    <h4>A Wish For You</h4>
+                    <h4 id="wish-display-title">${t.wishDisplayTitle}</h4>
                     <p id="wish-text"></p>
                 </div>
             </div>
@@ -430,11 +548,11 @@ function getBirthdayHtml() {
 
         <!-- 8. PULSING HEART ANIMATION -->
         <section id="heart-anim" class="birthday-section">
-            <h2 class="section-title">Send <span>Hearts</span></h2>
+            <h2 class="section-title">${t.heartAnimTitle}</h2>
             <div class="heart-anim-wrapper">
                 <div class="pulsing-3d-heart" onclick="beatingHeartClicked(event)">💖</div>
-                <div class="heart-click-counter">You've sent <span id="heart-count-val">0</span> hearts to Sonali!</div>
-                <div class="heart-subtext">Tap the heart to explode sparkles of love.</div>
+                <div class="heart-click-counter" id="heart-counter-container">${t.heartCountPrefix}<span id="heart-count-val">${heartClickCount}</span>${t.heartCountSuffix}</div>
+                <div class="heart-subtext">${t.heartSubtext}</div>
             </div>
         </section>
 
@@ -443,28 +561,17 @@ function getBirthdayHtml() {
             <div class="secret-lock-container glassmorphic" data-aos="zoom-in">
                 <div id="secret-lock-ui">
                     <div class="lock-shield"><i class="fa-solid fa-lock"></i></div>
-                    <h3>Top Secret Surprise Letter</h3>
-                    <p>Enter the secret passcode (girlfriend's name in lowercase) to unlock a personal surprise message.</p>
+                    <h3>${t.secretLetterTitle}</h3>
+                    <p>${t.secretLetterDesc}</p>
                     <div class="lock-input-group">
-                        <input type="password" id="secret-passcode-field" class="secret-pass-input" placeholder="Enter password...">
-                        <button class="secret-unlock-btn" onclick="validateSecretPass()">Unlock</button>
+                        <input type="password" id="secret-passcode-field" class="secret-pass-input" placeholder="${t.secretLetterPlaceholder}">
+                        <button class="secret-unlock-btn" onclick="validateSecretPass()">${t.secretLetterBtn}</button>
                     </div>
                 </div>
                 <div id="secret-letter-revealed" class="hidden">
                     <div class="revealed-letter-box">
-                        <h4>A Secret Just For You...</h4>
-                        <p>Sonali,
-                        
-                        You are my absolute favorite person in the entire universe. Every day with you is a blessing, and I couldn't be more thankful to walk this life with you.
-                        
-                        This website is a small token of my love, designed to show you that no matter the time, date, or distance, my heart will always count down the seconds to make you happy.
-                        
-                        Thank you for loving me. Thank you for your warmth.
-                        
-                        Happy Birthday, My Princess. I love you to the moon and back, forever and ever.
-                        
-                        Forever Yours,
-                        Shagor ❤️</p>
+                        <h4>${t.secretLetterRevealedTitle}</h4>
+                        <p style="white-space: pre-line;">${t.secretLetterRevealedBody}</p>
                     </div>
                 </div>
             </div>
@@ -472,12 +579,10 @@ function getBirthdayHtml() {
 
         <!-- 10. ENDING SECTION -->
         <section class="birthday-section ending-wrapper">
-            <h1 class="ending-title" data-aos="zoom-out">Forever Yours ❤️</h1>
-            <p class="ending-text" data-aos="fade-up">
-                No matter how many years go by, or how much the stars rotate in the sky, my love for you remains unchanging.
-            </p>
-            <button class="replay-button" onclick="replaySurprise()">Replay Magical Opening</button>
-            <div class="footer-note">Designed with endless love for Sonali ❤️ | 14 July</div>
+            <h1 class="ending-title" data-aos="zoom-out">${t.endingTitle}</h1>
+            <p class="ending-text" data-aos="fade-up">${t.endingText}</p>
+            <button class="replay-button" onclick="replaySurprise()">${t.endingReplayBtn}</button>
+            <div class="footer-note">${t.endingFooter}</div>
         </section>
 
         <!-- PHOTO LIGHTBOX -->
@@ -490,6 +595,67 @@ function getBirthdayHtml() {
         </div>
     `;
 }
+
+// Language Switcher Logic
+function updateLanguageUI() {
+    const t = TRANSLATIONS[currentLang];
+
+    // Update countdown page titles
+    const cdTitle = document.getElementById('countdown-title');
+    const cdSubtitle = document.getElementById('countdown-subtitle');
+    const lblDays = document.getElementById('label-days');
+    const lblHours = document.getElementById('label-hours');
+    const lblMinutes = document.getElementById('label-minutes');
+    const lblSeconds = document.getElementById('label-seconds');
+    const dateTag = document.getElementById('birthday-date-tag');
+    const footerNote = document.getElementById('countdown-footer-note');
+    const tapInstruct = document.getElementById('tap-instruction');
+
+    if (cdTitle) cdTitle.innerText = t.countdownTitle;
+    if (cdSubtitle) cdSubtitle.innerText = t.countdownSubtitle;
+    if (lblDays) lblDays.innerText = t.labelDays;
+    if (lblHours) lblHours.innerText = t.labelHours;
+    if (lblMinutes) lblMinutes.innerText = t.labelMinutes;
+    if (lblSeconds) lblSeconds.innerText = t.labelSeconds;
+    if (dateTag) dateTag.innerHTML = t.birthdayDateTag;
+    if (footerNote) footerNote.innerText = t.countdownFooter;
+    if (tapInstruct) tapInstruct.innerText = t.tapInstruction;
+
+    // Update player track details
+    const trackName = document.getElementById('track-name');
+    const artistName = document.getElementById('artist-name');
+    if (trackName) trackName.innerText = t.trackName;
+    if (artistName) artistName.innerText = t.artistName;
+
+    // Update toggle button labels
+    const langBtn = document.getElementById('lang-switch-btn');
+    if (langBtn) {
+        if (currentLang === 'en') {
+            langBtn.innerText = 'বাংলা';
+        } else {
+            langBtn.innerText = 'English';
+        }
+    }
+
+    // Refresh dynamic site container content if unlocked
+    const siteContainer = document.getElementById('birthday-website-container');
+    if (siteContainer && siteContainer.classList.contains('active')) {
+        siteContainer.innerHTML = getBirthdayHtml();
+
+        // Reinitialize AOS on updated cards
+        AOS.refresh();
+        setQuoteSlide(quoteSlideIndex);
+    }
+}
+
+function toggleLanguage() {
+    currentLang = (currentLang === 'en') ? 'bn' : 'en';
+    localStorage.setItem('birthdayLang', currentLang);
+    updateLanguageUI();
+}
+
+// Export toggleLanguage to global window scope so it can be called from HTML onclick
+window.toggleLanguage = toggleLanguage;
 
 // Scroll Helper
 function scrollToSection(id) {
@@ -549,10 +715,9 @@ function revealWish(idx, event) {
     event.stopPropagation();
     const wishCard = document.getElementById('wish-display');
     const wishText = document.getElementById('wish-text');
-    wishText.innerText = JAR_WISHES[idx];
+    wishText.innerText = TRANSLATIONS[currentLang].jarWishes[idx];
     wishCard.classList.remove('hidden');
 
-    // Sparkle confetti effect on the bubble click
     confetti({
         particleCount: 20,
         spread: 30,
@@ -564,7 +729,7 @@ function revealWish(idx, event) {
 function jarClicked(event) {
     const wishCard = document.getElementById('wish-display');
     const wishText = document.getElementById('wish-text');
-    wishText.innerText = "Tap on the glowing golden dots inside the jar to reveal hidden wishes!";
+    wishText.innerText = TRANSLATIONS[currentLang].wishJarClickedHint;
     wishCard.classList.remove('hidden');
 }
 
@@ -574,7 +739,6 @@ function beatingHeartClicked(event) {
     heartClickCount++;
     document.getElementById('heart-count-val').innerText = heartClickCount;
 
-    // Confetti hearts blast
     const defaults = { spread: 360, ticks: 50, gravity: 0, decay: 0.94, startVelocity: 15, colors: ['#ff4d6d', '#ff7597', '#ff85a1', '#ff0a54'] };
     confetti({
         ...defaults,
@@ -615,8 +779,7 @@ function replaySurprise() {
 // Custom heart canvas shape helper for confetti library
 const setupConfettiHearts = () => {
     if (typeof confetti === 'function') {
-        // Register heart shape with canvas-confetti
-        // Standard library handles custom shape drawing if registered
+        // Registered shape hook
     }
 };
 
@@ -636,7 +799,6 @@ function initThreeStarfield() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
 
-    // Create custom starry sky particles
     const starCount = 1200;
     const geometry = new THREE.BufferGeometry();
     const positions = new Float32Array(starCount * 3);
@@ -647,12 +809,10 @@ function initThreeStarfield() {
     const blueColor = new THREE.Color('#9d4edd');
 
     for (let i = 0; i < starCount * 3; i += 3) {
-        // random space position
         positions[i] = (Math.random() - 0.5) * 600;
         positions[i + 1] = (Math.random() - 0.5) * 600;
         positions[i + 2] = (Math.random() - 0.5) * 600;
 
-        // random color weights
         let randColor = Math.random();
         let starColor;
         if (randColor < 0.4) starColor = pinkColor;
@@ -667,7 +827,6 @@ function initThreeStarfield() {
     geometry.setAttribute('position', new THREE.BufferAttribute(positions, 3));
     geometry.setAttribute('color', new THREE.BufferAttribute(colors, 3));
 
-    // Custom round soft star texture using HTML canvas
     const starTexture = new THREE.Texture(createCircleTexture());
     starTexture.needsUpdate = true;
 
@@ -684,7 +843,6 @@ function initThreeStarfield() {
     starPoints = new THREE.Points(geometry, material);
     scene.add(starPoints);
 
-    // Resize handler
     window.addEventListener('resize', onWindowResize, false);
     animateStarfield();
 }
@@ -711,13 +869,10 @@ function onWindowResize() {
 
 function animateStarfield() {
     requestAnimationFrame(animateStarfield);
-
-    // Slow rotate starfield
     if (starPoints) {
         starPoints.rotation.y += 0.0006;
         starPoints.rotation.x += 0.0003;
     }
-
     renderer.render(scene, camera);
 }
 
@@ -742,7 +897,6 @@ function startFallingParticles() {
             particle.style.fontSize = Math.random() * 15 + 10 + 'px';
             particle.style.opacity = Math.random() * 0.4 + 0.3;
         } else {
-            // Rose petal
             particle.innerHTML = '🌸';
             particle.style.fontSize = Math.random() * 18 + 12 + 'px';
             particle.style.opacity = Math.random() * 0.5 + 0.3;
@@ -750,7 +904,6 @@ function startFallingParticles() {
 
         container.appendChild(particle);
 
-        // GSAP animate particle upward with sway
         gsap.to(particle, {
             y: -(window.innerHeight + 100),
             x: '+=' + ((Math.random() - 0.5) * 150),
@@ -801,7 +954,7 @@ function runFireworksEngine() {
 
             if (curDist < 10) {
                 this.explode();
-                return false; // Remove
+                return false;
             }
             return true;
         }
@@ -857,7 +1010,6 @@ function runFireworksEngine() {
         }
     }
 
-    // Auto-launch loop
     let lastLaunch = 0;
     function loop(timestamp) {
         fireworksAnimId = requestAnimationFrame(loop);
@@ -897,44 +1049,29 @@ function stopFireworksEngine() {
 // ==========================================================================
 // COUNTDOWN & UNLOCK TIMELINE LOGIC
 // ==========================================================================
-
 let countdownInterval = null;
 
 function checkBirthdayLock() {
-    // Check test override parameters
     const urlParams = new URLSearchParams(window.location.search);
     const testMode = urlParams.get('test');
 
     if (testMode === 'unlock') {
-        console.log("Test unlock mode activated!");
-        setupCountdown(true); // force immediate countdown screen unlock sequence setup
+        setupCountdown(true);
         return;
     }
 
     if (testMode === 'site') {
-        console.log("Test direct site mode activated!");
-        unlockAndRenderSite(true); // render immediately without countdown
+        unlockAndRenderSite(true);
         return;
     }
 
     const now = new Date();
-
-    // Construct local target date: July 29 of current year
     const targetDate = new Date(now.getFullYear(), TARGET_MONTH, TARGET_DAY, TARGET_HOUR, TARGET_MINUTE, TARGET_SECOND);
-
-    // Check if the unlock date has already passed in the local year, or if we have it in Local Storage
     const isUnlockedInStorage = localStorage.getItem('birthdayUnlocked') === 'true';
 
     if (now >= targetDate) {
-        if (isUnlockedInStorage) {
-            // Future visits after July 29: Immediately load the website. Do not show countdown again.
-            unlockAndRenderSite(true);
-        } else {
-            // First visit on or after July 29: Skip countdown completely, open site immediately.
-            unlockAndRenderSite(true);
-        }
+        unlockAndRenderSite(true);
     } else {
-        // Locked: Show countdown card
         setupCountdown(false);
     }
 }
@@ -947,7 +1084,6 @@ function setupCountdown(isTestUnlock) {
     const secondsVal = document.getElementById('seconds');
 
     const now = new Date();
-    // Test unlock option: countdown 5 seconds then unlock!
     let targetTime;
     if (isTestUnlock) {
         targetTime = new Date().getTime() + 5000;
@@ -961,7 +1097,6 @@ function setupCountdown(isTestUnlock) {
 
         if (difference <= 0) {
             clearInterval(countdownInterval);
-            // Automatic Unlock! No refresh needed
             triggerUnlockSequence();
             return;
         }
@@ -981,7 +1116,7 @@ function setupCountdown(isTestUnlock) {
     countdownInterval = setInterval(updateTimer, 1000);
 }
 
-// UNLOCK FLOW TIMELINE (Fades screen, plays chimes, reveals box, typing text, reveals site)
+// UNLOCK FLOW TIMELINE
 function triggerUnlockSequence() {
     clearInterval(countdownInterval);
 
@@ -989,7 +1124,6 @@ function triggerUnlockSequence() {
     const unlockOverlay = document.getElementById('unlock-overlay');
     const giftBoxWrapper = document.getElementById('gift-box-wrapper');
 
-    // Step 1: Fade entire screen to black (1 second)
     gsap.to(countdownScreen, {
         opacity: 0,
         duration: 1,
@@ -998,7 +1132,6 @@ function triggerUnlockSequence() {
             unlockOverlay.classList.add('active');
             gsap.to(unlockOverlay, { opacity: 1, duration: 0.5 });
 
-            // Step 2 & 3: Play magic chime & reveal Gift Box
             playUnlockSound();
             giftBoxWrapper.classList.remove('hidden');
             gsap.fromTo(giftBoxWrapper,
@@ -1008,7 +1141,6 @@ function triggerUnlockSequence() {
         }
     });
 
-    // Handle Gift Box Open Action
     const giftBox = document.getElementById('interactive-gift-box');
     giftBox.addEventListener('click', openGiftBoxAction, { once: true });
 }
@@ -1018,10 +1150,8 @@ function openGiftBoxAction() {
     const giftBoxWrapper = document.getElementById('gift-box-wrapper');
     const greetingBanner = document.getElementById('greeting-banner');
 
-    // Resume audio context on user interaction to bypass browser policies
     getAudioContext();
 
-    // Gift Lid slides off & golden light shines
     gsap.to('#interactive-gift-box .gift-lid', {
         y: -100,
         x: 40,
@@ -1036,22 +1166,17 @@ function openGiftBoxAction() {
         duration: 0.8
     });
 
-    // Play chime again
     playUnlockSound();
 
     setTimeout(() => {
-        // Step 4 & 5: Confetti burst & Fireworks start
         confetti({
             particleCount: 150,
             spread: 80,
             origin: { y: 0.6 }
         });
         runFireworksEngine();
-
-        // Step 6 & 7: Environments
         startFallingParticles();
 
-        // Fade gift box and show greeting banners
         gsap.to(giftBoxWrapper, {
             opacity: 0,
             scale: 0.5,
@@ -1060,10 +1185,7 @@ function openGiftBoxAction() {
                 giftBoxWrapper.classList.add('hidden');
                 greetingBanner.classList.remove('hidden');
 
-                // Step 8: Play birthday music automatically
                 startBgmMusic();
-
-                // Step 9 & 10: Typewriter animation happy birthday
                 typewriterSequence();
             }
         });
@@ -1074,28 +1196,23 @@ function typewriterSequence() {
     const titleEl = document.getElementById('typewriter-title');
     const subtitleEl = document.getElementById('typewriter-subtitle');
 
-    const textTitle = '🎉 Happy Birthday My Princess ❤️';
+    const textTitle = TRANSLATIONS[currentLang].typewriterTitle;
     let charIdx = 0;
 
-    // GSAP border blink animation
     gsap.fromTo(titleEl, { borderRightColor: 'rgba(255, 77, 109, 1)' }, { borderRightColor: 'rgba(255, 77, 109, 0)', repeat: -1, duration: 0.5, ease: 'steps(1)' });
 
     function typeChar() {
         if (charIdx < textTitle.length) {
             titleEl.textContent += textTitle.charAt(charIdx);
-            // Dynamic width setting to simulate typewriter bounds
             titleEl.style.width = '100%';
             charIdx++;
             setTimeout(typeChar, 85);
         } else {
-            // Typing complete: Fade out blinking cursor
             titleEl.style.borderRight = 'none';
 
-            // Step 10: Fade in Subtitle
-            subtitleEl.innerText = 'To My Beautiful Sonali';
+            subtitleEl.innerText = TRANSLATIONS[currentLang].typewriterSubtitle;
             subtitleEl.classList.add('visible');
 
-            // Step 11: Transition to full site after 3.5s
             setTimeout(() => {
                 revealBirthdayWebsite();
             }, 3500);
@@ -1108,36 +1225,29 @@ function typewriterSequence() {
 function revealBirthdayWebsite() {
     const unlockOverlay = document.getElementById('unlock-overlay');
 
-    // Fade out overlay and stop canvas fireworks to free up resources
     gsap.to(unlockOverlay, {
         opacity: 0,
         duration: 1.5,
         onComplete: () => {
             unlockOverlay.classList.remove('active');
             stopFireworksEngine();
-            unlockAndRenderSite(false); // render with transition
+            unlockAndRenderSite(false);
         }
     });
 }
 
 function unlockAndRenderSite(isImmediate) {
-    // Save to LocalStorage
     localStorage.setItem('birthdayUnlocked', 'true');
 
     const siteContainer = document.getElementById('birthday-website-container');
     const countdownScreen = document.getElementById('countdown-screen');
 
-    // Inject HTML
     siteContainer.innerHTML = getBirthdayHtml();
 
-    // If we bypassed the unlock overlay (immediate load), start particles and music helper
     if (isImmediate) {
         startFallingParticles();
-
-        // Music requires click gesture, play visual player so they can activate it
         document.getElementById('global-music-player').classList.remove('hidden');
 
-        // Listen for first click on window to auto-start BGM
         const startMusicOnGesture = () => {
             startBgmMusic();
             window.removeEventListener('click', startMusicOnGesture);
@@ -1147,18 +1257,15 @@ function unlockAndRenderSite(isImmediate) {
         window.addEventListener('touchstart', startMusicOnGesture);
     }
 
-    // Switch screen view
     countdownScreen.classList.remove('active');
     siteContainer.classList.add('active');
 
-    // GSAP reveal timeline for sections
     if (!isImmediate) {
         gsap.from('#hero .hero-greeting', { opacity: 0, y: -50, duration: 1, delay: 0.2 });
         gsap.from('#hero .hero-name', { opacity: 0, y: 50, duration: 1.2, delay: 0.4 });
         gsap.from('#hero .hero-tagline', { opacity: 0, scale: 0.9, duration: 1, delay: 0.8 });
     }
 
-    // Initialize AOS scroll triggers
     AOS.init({
         duration: 1000,
         once: false,
@@ -1166,7 +1273,6 @@ function unlockAndRenderSite(isImmediate) {
         easing: 'ease-out-back'
     });
 
-    // Start Quotes Autoplay
     startQuoteRotation();
 }
 
@@ -1185,7 +1291,6 @@ document.getElementById('player-mute-btn').addEventListener('click', () => {
     }
 });
 
-// Update progress bar of the player
 document.getElementById('audio-bgm').addEventListener('timeupdate', (e) => {
     const bgm = e.target;
     const progress = document.getElementById('player-progress');
@@ -1195,7 +1300,6 @@ document.getElementById('audio-bgm').addEventListener('timeupdate', (e) => {
     }
 });
 
-// Click progress bar to seek
 document.querySelector('.progress-bar-container').addEventListener('click', (e) => {
     const bgm = document.getElementById('audio-bgm');
     if (bgm.duration) {
@@ -1207,7 +1311,6 @@ document.querySelector('.progress-bar-container').addEventListener('click', (e) 
     }
 });
 
-// Expand player on click (for mobile convenience)
 document.getElementById('global-music-player').addEventListener('click', (e) => {
     e.currentTarget.classList.add('expanded');
     e.stopPropagation();
@@ -1221,11 +1324,11 @@ document.addEventListener('click', () => {
 // START INITIALIZATION
 // ==========================================================================
 window.addEventListener('DOMContentLoaded', () => {
+    updateLanguageUI();
     setupConfettiHearts();
     initThreeStarfield();
     checkBirthdayLock();
 
-    // Initialize AOS for static elements on page load (e.g. the countdown screen)
     AOS.init({
         duration: 1000,
         once: false,
